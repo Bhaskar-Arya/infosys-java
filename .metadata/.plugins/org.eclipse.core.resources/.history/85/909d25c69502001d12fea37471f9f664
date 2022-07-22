@@ -1,0 +1,8 @@
+package com.ui.globalexception;
+
+public class ProductException extends Exception {
+	public ProductException(Exception e) {
+		super(e.getMessage());
+	}
+
+}

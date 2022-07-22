@@ -1,0 +1,23 @@
+package com.ui;
+
+import java.time.LocalDateTime;
+import com.ui.globalexception.Error;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import com.ui.dto.Product;
+import com.ui.globalexception.ProductException;
+
+@RestControllerAdvice
+public class GlobalException {
+     @ExceptionHandler(ProductException.class)
+	public Error getError(Exception e, HttpServletRequest req) {
+		return new Error(LocalDateTime.now(), req.getRequestURI(),e.getMessage());
+		
+	}
+
+}

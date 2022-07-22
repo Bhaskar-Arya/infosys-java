@@ -1,0 +1,18 @@
+package com.ui;
+
+import java.time.LocalDate;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+
+@SpringBootApplication
+public class OfficeMsApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(OfficeMsApplication.class, args);
+	}
+	LocalDate loaDate = LocalDate.of(2022, 07, 19);
+	LocalDate prevDate = LocalDate.of(2022, 07, 17);
+	
+}

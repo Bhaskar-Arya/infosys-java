@@ -1,0 +1,14 @@
+server:
+ port: 9092
+spring: 
+  application:
+    name: Office
+cloud:
+  consul:
+   config:
+    enabled: true
+   preficx: config
+   default-context: application
+   profile-separator: '::'
+   format: yaml
+   

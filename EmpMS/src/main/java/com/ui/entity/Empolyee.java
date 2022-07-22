@@ -1,0 +1,54 @@
+package com.ui.entity;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
+@Entity
+@Table(name ="emp_tbl")
+public class Empolyee {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int emp_id;
+	private String emp_name;
+//	@OneToOne
+//	@JoinColumn(name = "office_id")
+	private int office_id;
+	public Empolyee(int emp_id, String emp_name, int office_id) {
+		super();
+		this.emp_id = emp_id;
+		this.emp_name = emp_name;
+		this.office_id = office_id;
+	}
+	public Empolyee() {
+		super();
+	}
+	public int getEmp_id() {
+		return emp_id;
+	}
+	public void setEmp_id(int emp_id) {
+		this.emp_id = emp_id;
+	}
+	public String getEmp_name() {
+		return emp_name;
+	}
+	public void setEmp_name(String emp_name) {
+		this.emp_name = emp_name;
+	}
+	public int getOffice_id() {
+		return office_id;
+	}
+	public void setOffice_id(int office_id) {
+		this.office_id = office_id;
+	}
+	@Override
+	public String toString() {
+		return "Empolyee [emp_id=" + emp_id + ", emp_name=" + emp_name + ", office_id=" + office_id + "]";
+	} 
+	
+
+}

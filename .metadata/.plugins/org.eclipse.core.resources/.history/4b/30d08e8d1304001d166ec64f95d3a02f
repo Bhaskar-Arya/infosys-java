@@ -1,0 +1,9 @@
+package com.ui.repository;
+
+import org.springframework.data.repository.CrudRepository;
+
+import com.ui.entity.Empolyee;
+
+public interface EmpRepo extends CrudRepository<Empolyee, Integer>{
+
+}

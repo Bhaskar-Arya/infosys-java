@@ -1,0 +1,14 @@
+server:
+ port: 9091
+spring: 
+  application:
+    name: EMP
+cloud:
+  consul:
+   config:
+    enabled: true
+   preficx: config
+   default-context: application
+   profile-separator: '::'
+   format: yaml
+   

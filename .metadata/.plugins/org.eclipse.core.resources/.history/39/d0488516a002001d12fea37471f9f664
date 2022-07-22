@@ -1,0 +1,34 @@
+package com.ui;
+
+import java.time.LocalDateTime;
+import com.ui.globalexception.Error;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+
+import com.ui.globalexception.ProductException;
+
+@RestControllerAdvice
+public class GlobalException {
+//     @ExceptionHandler(ProductException.class)
+//	public Error getError(Exception e, HttpServletRequest req) {
+//		return new Error(LocalDateTime.now(), req.getRequestURI(),e.getMessage());
+//		
+//	}
+
+	@ExceptionHandler(ProductException.class)
+	public ResponseEntity<Error> getError(ProductException p,HttpServletRequest req){
+		Error error = new Error();
+		error.setLdt(LocalDateTime.now());
+		error.setMsg(" new error ouccurd");
+		error.setUrl(req.getRequestURI());
+		
+		return new ResponseEntity<Error>(error,HttpStatus.BAD_REQUEST);
+	}
+
+}

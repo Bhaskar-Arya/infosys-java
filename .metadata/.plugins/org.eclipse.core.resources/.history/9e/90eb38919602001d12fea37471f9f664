@@ -1,0 +1,2 @@
+service.port = 9092
+product.error.occured=porduct type error occured

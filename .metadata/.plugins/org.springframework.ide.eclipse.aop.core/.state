@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aop-reference-model>
+<aop-project name="demo-2"/>
+<aop-project name="MarketCurd"/>
+<aop-project name="Spring_pagger"/>
+<aop-project name="EmpMS"/>
+<aop-project name="Market"/>
+<aop-project name="SpringRestApi"/>
+<aop-project name="RestTemplateService"/>
+<aop-project name="OfficeMS"/>
+</aop-reference-model>

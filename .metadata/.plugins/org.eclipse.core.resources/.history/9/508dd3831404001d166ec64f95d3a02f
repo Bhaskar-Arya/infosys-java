@@ -1,0 +1,24 @@
+package com.ui.dto;
+
+
+
+public class EmployeeDTO {
+
+	private int emp_id;
+	private String emp_name;
+	private int office_id;
+	public EmployeeDTO(int emp_id, String emp_name, int office_id) {
+		super();
+		this.emp_id = emp_id;
+		this.emp_name = emp_name;
+		this.office_id = office_id;
+	}
+	public EmployeeDTO() {
+		super();
+	}
+	@Override
+	public String toString() {
+		return "EmployeeDTO [emp_id=" + emp_id + ", emp_name=" + emp_name + ", office_id=" + office_id + "]";
+	}
+
+}

@@ -1,0 +1,15 @@
+package com.ui;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class OfficeMsApplicationTests {
+
+	@Test
+	void contextLoads() {
+		Assertions.assertEquals("hello", "hello");
+	}
+
+}

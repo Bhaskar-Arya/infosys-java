@@ -1,0 +1,69 @@
+package com.ui.service;
+
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+import com.ui.dto.EmployeeDTO;
+import com.ui.dto.OfficeDTO;
+import com.ui.entity.Empolyee;
+import com.ui.repository.EmpRepo;
+import com.ui.utility.EmpException;
+
+@Service
+@RestController
+@RequestMapping("/emp")
+public class EmpServiceImp {
+	@Autowired
+	EmpRepo empRepo; 
+	@Autowired
+	RestTemplate resttemplate; 
+	
+	@GetMapping("/record/{id}")
+	public Empolyee getEmpolyee(@PathVariable int id) {
+		Empolyee emp1 = empRepo.findById(id).get();
+		return emp1; 
+	}
+	@PostMapping("/addemp")
+	public Empolyee addEmpolyee(@RequestBody EmployeeDTO employeeDTO ) throws EmpException{
+		Empolyee fetchdemp = empRepo.findById(employeeDTO.getEmp_id()).get();
+		if(fetchdemp != null)
+			throw new EmpException(" employee already exist or use update service to update field ");
+		Empolyee emp1 = new Empolyee();
+		 emp1.setEmp_id(employeeDTO.getEmp_id());
+		 emp1.setEmp_name(employeeDTO.getEmp_name());
+		 emp1.setOffice_id(employeeDTO.getOffice_id());
+		empRepo.save(emp1);
+		return emp1; 
+	}
+	@GetMapping("/fulldetails/{id}")
+	public EmployeeDTO getEmployeeFullDeatils(@PathVariable int id) throws  EmpException{
+		
+		Optional<Empolyee> optional = empRepo.findById(id);
+		Empolyee emp1 = optional.orElseThrow(()->new  EmpException("no such employee exist in the record "));
+		String getOfficeUrl = "http://localhost:9092/office/addres/";
+		try {
+		            OfficeDTO officeDTO = resttemplate.getForObject(getOfficeUrl+emp1.getOffice_id(),OfficeDTO.class);
+		       		EmployeeDTO employeeDTO = new EmployeeDTO();
+		    		employeeDTO.setEmp_id(emp1.getEmp_id());
+		    		employeeDTO.setEmp_name(emp1.getEmp_name());
+		            employeeDTO.setOffice_id(emp1.getOffice_id());
+		            employeeDTO.setOfficeDTO(officeDTO);
+		            return employeeDTO;
+		}
+		catch(Exception e)
+		{
+			throw new EmpException(e.getMessage());
+		}
+
+	}
+
+}
